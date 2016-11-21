@@ -28,11 +28,27 @@ const styles = StyleSheet.create({
   }
 });
 
-const Login = () => (
-  <TouchableOpacity style={styles.container}>
-    <Text style={styles.title}>Login</Text>
-    <Text style={styles.description}>My description</Text>
-  </TouchableOpacity>
-);
+class Login extends React.Component {
 
-export { Login as default };
+  componentDidMount() {
+    const {logout, actions} = this.props;
+
+    if (logout) {
+      actions.fetchData(null);
+    }
+  }
+
+  render() {
+    const {actions} = this.props;
+    return (
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => actions.fetchData({user: 'john doe'})}>
+        <Text style={styles.title}>Login</Text>
+        <Text style={styles.description}>My description</Text>
+      </TouchableOpacity>
+    );
+  }
+}
+
+export default Login;

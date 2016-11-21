@@ -2,12 +2,13 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "rules": {
-      "object-curly-spacing": 0,
       "react/jsx-filename-extension": 0,
       "react/jsx-closing-bracket-location": 0,
-      "import/no-named-as-default": 0,
+      "react/prop-types": 0,
       "react/prefer-stateless-function": 0,
+      "import/no-named-as-default": 0,
       "import/no-named-as-default-member": 0,
+      "object-curly-spacing": 0,
       "comma-dangle": ["error", "never"]
     },
 }

@@ -10,8 +10,13 @@
     "@exponent/vector-icons": "~2.0.3",
     "babel-eslint": "^7.1.1",
     "exponent": "~11.0.2",
+    "native-base": "^0.5.15",
     "react": "~15.3.2",
-    "react-native": "git+https://github.com/exponentjs/react-native#sdk-11.0.3"
+    "react-native": "git+https://github.com/exponentjs/react-native#sdk-11.0.3",
+    "react-redux": "^4.4.6",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

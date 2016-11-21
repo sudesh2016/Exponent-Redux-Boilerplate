@@ -1,39 +1,11 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text
-} from 'react-native';
-import {
-  StackNavigation,
-  DrawerNavigation,
-  DrawerNavigationItem
-} from '@exponent/ex-navigation';
-import { Ionicons } from '@exponent/vector-icons';
+import React, {Component} from 'react';
+import {StackNavigation, DrawerNavigation, DrawerNavigationItem}
+from '@exponent/ex-navigation';
+import {Text, View} from 'react-native';
+import Login from '../components/Login';
 import Router from '../navigation/Router';
 
-console.log(Router, 'here in router');
-const styles = StyleSheet.create({
-  header: {
-    padding: 10,
-  },
-  buttonTitleText: {
-    color: '#222',
-    fontWeight: 'bold',
-    marginLeft: 18
-  },
-  icon: {
-    color: '#999'
-  },
-  selectedText: {
-    color: '#0084FF'
-  },
-  selectedItemStyle: {
-    backgroundColor: '#fff'
-  }
-});
-
-export default class DrawerNavigationExample extends Component {
+export default class RootRouter extends Component {
 
   renderHeader = () => (
     <View>
@@ -41,27 +13,15 @@ export default class DrawerNavigationExample extends Component {
     </View>
   )
 
-  renderTitle = (text: string, isSelected: bool) => (
-    <Text style={[styles.buttonTitleText, isSelected ? styles.selectedText : null]}>
-      Title Is Here
+  renderTitle = text => (
+    <Text>
+      {text}
     </Text>
   );
 
-  renderIcon = (name: string, isSelected: bool) => {
-    let extraStyle = {marginTop: 2};
-    if (name === 'md-alert') {
-      extraStyle = {...extraStyle, marginLeft: -3};
-    }
-    return (
-      <Ionicons
-        style={[styles.icon, isSelected ? styles.selectedText : null, extraStyle]}
-        name={name}
-        size={24}
-      />
-    );
-  };
-
   render() {
+    const {actions} = this.props;
+
     return (
       <DrawerNavigation
         drawerPosition="left"
@@ -70,9 +30,7 @@ export default class DrawerNavigationExample extends Component {
         initialItem="home">
         <DrawerNavigationItem
           id="home"
-          selectedStyle={styles.selectedItemStyle}
-          renderTitle={isSelected => this.renderTitle('Examples', isSelected)}
-          renderIcon={isSelected => this.renderIcon('md-apps', isSelected)}>
+          renderTitle={isSelected => this.renderTitle('Home', isSelected)}>
           <StackNavigation
             id="root"
             defaultRouteConfig={{
@@ -81,8 +39,13 @@ export default class DrawerNavigationExample extends Component {
                 tintColor: '#fff'
               }
             }}
-            initialRoute={Router.getRoute('home')}
-          />
+            initialRoute={Router.getRoute('home')} />
+        </DrawerNavigationItem>
+        <DrawerNavigationItem
+          id="logout"
+          renderTitle={isSelected => this.renderTitle('Logout', isSelected)}
+          title="Logout">
+          <Login actions={actions} logout />
         </DrawerNavigationItem>
       </DrawerNavigation>
     );
